@@ -18,8 +18,10 @@ public class SacarDinero extends Thread{
 
             @Override
             public void run() {
-                for (int x=1; x<= 4; x++){
-                    cuenta.retirarDinero(10,getNombre());
-                }
+            //    synchronized (cuenta) {
+                    for (int x = 1; x <= 4; x++) {
+                        cuenta.retirarDinero(10, getNombre());
+                    }
+                //}
             }
 }//run
