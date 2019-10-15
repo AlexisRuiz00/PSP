@@ -8,6 +8,7 @@ public class MainPinPon {
         Pin hiloPin = new Pin(pinpon);
         Pon hiloPon = new Pon(pinpon);
 
+
         hiloPin.start();
         hiloPon.start();
 

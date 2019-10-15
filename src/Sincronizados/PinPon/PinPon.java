@@ -1,51 +1,40 @@
 package Sincronizados.PinPon;
 
 public class PinPon {
+    String pinp;
 
-    boolean wait;
+    boolean wait = false;
     public PinPon(){
         wait  = false;
     }
 
 
-    public synchronized void pin(){
+    public synchronized void pin() {
 
-        for (int i=0;i<5;i++) {
-
-            while (wait) {
-                try {
-                    wait();
-                    //System.out.println("ENTRA PIN");
-                } catch (Exception e) { }
-            }
+        while (wait) {
             try {
-                wait(100);
-            }catch (Exception e) {}
-                wait = true;
-                notify();
-                System.out.println("PIN");
-
+                wait();
+            } catch (Exception e) {}
         }
-
-   }
-
-    public synchronized void pon(){
-       for (int i=0;i<5;i++) {
-
-            while (!wait) {
-                try {
-                    wait();
-                    //System.out.println("ENTRA PON");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }}
-               try {
-                   wait(100);
-               }catch (Exception e) {}
-                wait = false;
-                notify();
-                System.out.println("PON");
-        }
+        System.out.println("PIN");
+       // pinp = "PIN";
+        wait = true;
+       // return pinp;
+        notifyAll();
     }
 
+    public synchronized void pon() {
+
+        while (!wait) {
+            try {
+                wait();
+            } catch (Exception e) {
+            }
+        }
+        System.out.println("PON");
+       // pinp = "PON";
+        wait = false;
+       // return pinp;
+        notifyAll();
+    }
 }
