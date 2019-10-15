@@ -45,9 +45,6 @@ public class PinPon {
                 wait = false;
                 notify();
                 System.out.println("PON");
-
-
-
         }
     }
 
