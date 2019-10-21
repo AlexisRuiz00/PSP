@@ -9,7 +9,8 @@ public class CuentaBancaria {
     }
 
 
-    public void retirarDinero(int cant, String nom){
+    public synchronized void retirarDinero(int cant, String nom){
+
         if (consultaSaldo() >= cant){
             System.out.println(nom+" va a retirar "+cant+", saldo actual: "+consultaSaldo());
                     try {
