@@ -11,8 +11,13 @@ public class TestInetAdress {
         System.out.println("SALIDA PARA LOCALHOST: ");
         InetAddress dir = null;
 
+
         try {
             //LOCALHOST
+            InetAddress p = InetAddress.getByName("225.222.222.222");
+            System.out.println(p.getHostName());
+
+
             dir = InetAddress.getByName("localhost");
             pruebaMetodos(dir);
 
