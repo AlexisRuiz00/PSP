@@ -9,6 +9,7 @@ public class MainProductorConsumidor3 {
         Productor p2 = new Productor(cola,2);
         Consumidor c2 = new Consumidor(cola,2);
         Productor p3 = new Productor(cola,3);
+        Consumidor c3= new Consumidor(cola,3);
 
         System.out.println(Productor.creados);
         System.out.println(Consumidor.creados);
@@ -18,6 +19,7 @@ public class MainProductorConsumidor3 {
         p2.start();
         c2.start();
         p3.start();
+        c3.start();
 
 
 

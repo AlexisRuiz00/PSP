@@ -18,12 +18,12 @@ public class HiloConsumidor extends Thread {
     @Override
     public void run() {
 
-        synchronized (controladorHilos) {
+       // synchronized (controladorHilos) {
 
             while ((character = controladorHilos.getCharacter()) != (char) -1) {
                 System.out.print(character);
                 System.out.println(getId());
             }
-        }
+       // }
     }
 }

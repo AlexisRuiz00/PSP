@@ -7,13 +7,13 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
-public class Pantalla {
+public class Pantalla2 {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         InetAddress grupo = InetAddress.getByName("225.0.0.1");
         int puerto = 1209;
-        MulticastSocket socket = new MulticastSocket();
+        MulticastSocket socket = new MulticastSocket(puerto);
         socket.joinGroup(grupo);
 
         byte[] recibidos = new byte[1024];
@@ -23,8 +23,8 @@ public class Pantalla {
             socket.receive(recibo);
                 Mensaje mensaje = Mensaje.fromByteArray(recibidos);
                 System.out.println(mensaje);
-                socket.leaveGroup(grupo);
         }
+
     }
 
 }

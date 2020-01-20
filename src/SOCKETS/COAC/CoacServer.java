@@ -11,8 +11,7 @@ public class CoacServer {
     try {
         InetAddress grupo = InetAddress.getByName("225.0.0.1");
         int puerto = 1209;
-        MulticastSocket socket = new MulticastSocket(puerto);
-        socket.joinGroup(grupo);
+        MulticastSocket socket = new MulticastSocket();
 
 
         InputStreamReader isr = new InputStreamReader(System.in);
@@ -40,8 +39,10 @@ public class CoacServer {
                 DatagramPacket envio = new DatagramPacket(mensaje.toByteArray(), mensaje.toByteArray().length, grupo, puerto);
                 socket.send(envio);
 
-                System.out.println("Pulsa intro para introducir una nueva agrupación, o introduce N para terminar");
-            } while (!br.readLine().equalsIgnoreCase("n"));
+                System.out.println("Pulsa intro para introducir una nueva agrupación, o una letra para terminar");
+            } while (br.readLine().equalsIgnoreCase(""));
+            socket.leaveGroup(grupo);
+            socket.close();
         }
     } catch (Exception e) {e.printStackTrace();}
 

@@ -1,25 +1,19 @@
 package HILOS.CompruebaApredinzaje;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Ej3 {
+public class Ej4 {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<File> ficheros = new ArrayList<>();
-        File f1 = new File("prueba1.txt");
-        File f2 = new File("prueba2.txt");
-        File f3 = new File("prueba3.txt");
 
 
-        ficheros.add(f1);
-        ficheros.add(f2);
-        ficheros.add(f3);
-
-
-        for (File i : ficheros){
-            procesoLibro x = new procesoLibro(i);
+        for (int i = 0; i<args.length;i++){
+            File f = new File(args[i]);
+            procesoLibro x = new procesoLibro(f);
             x.start();
         }
 
@@ -47,6 +41,7 @@ public class Ej3 {
                 FileReader fr = new FileReader(f);
                 int i;
                 while ((i=fr.read()) != -1)
+                    if((char)i == ' ' || (char)i == '\n')
                     cuenta++;
 
                  if(cuenta == 0){

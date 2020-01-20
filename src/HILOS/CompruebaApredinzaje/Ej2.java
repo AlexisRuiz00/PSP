@@ -1,11 +1,8 @@
 package HILOS.CompruebaApredinzaje;
 
-public class ej1Y2 {
+public class Ej2 {
 
     public static void main(String[] args) {
-
-        //hilo hilo1 = new hilo();
-        //hilo1.start();
 
         for (int i=0; i<5;i++) {
             Thread h = new Thread(new hilo2("H"+i));
@@ -35,17 +32,6 @@ public class ej1Y2 {
 
     }
 
-
-
-
-    static class hilo extends Thread {
-
-        @Override
-        public void run() {
-            for (int i=0;i<5; i++)
-            System.out.println("Hola mundo "+this.getId());
-        }
-    }
 
 
 

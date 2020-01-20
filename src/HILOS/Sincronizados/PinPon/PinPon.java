@@ -16,10 +16,10 @@ public class PinPon {
                 wait();
             } catch (Exception e) {}
         }
-        System.out.println("PIN");
-       // pinp = "PIN";
+
+        pinp = "PIN";
         wait = true;
-       // return pinp;
+        System.out.println(pinp);
         notifyAll();
     }
 
@@ -32,9 +32,9 @@ public class PinPon {
             }
         }
         System.out.println("PON");
-       // pinp = "PON";
-        wait = false;
-       // return pinp;
+        pinp = "PON";
+        wait = true;
+        System.out.println(pinp);
         notifyAll();
     }
 }

@@ -23,7 +23,7 @@ public class CuentaBancaria2 {
             }
             restar(cant);
         } else {
-            System.out.println(nom + "va a retirar " + cant + ", No hay dinero suficiente " + consultaSaldo());
+            System.out.println(nom + " va a retirar " + cant + ", No hay dinero suficiente " + consultaSaldo());
         }
         if (consultaSaldo() < 0) {
             System.out.println("Saldo negativo => " + consultaSaldo());
@@ -32,7 +32,7 @@ public class CuentaBancaria2 {
 
     public synchronized void ingresarDinero(int cant, String nom){
 
-            if(cant+this.saldo>500){System.out.println(nom + "va a ingresar " + cant +" la cuenta tiene "+saldo+"€, no se puede realizar un ingreso que supere los 500€");}
+            if(cant+this.saldo>500){System.out.println(nom + " va a ingresar " + cant +" la cuenta tiene "+saldo+"€, no se puede realizar un ingreso que supere los 500€");}
             else {
                 System.out.println(nom + " va a ingresar " + cant + ", saldo actual: " + consultaSaldo());
                 try {

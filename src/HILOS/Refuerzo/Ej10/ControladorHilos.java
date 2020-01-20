@@ -42,7 +42,7 @@ public class ControladorHilos {
 
 
 
-    public char getCharacter() {
+    public synchronized char getCharacter() {
 
         while (!available){
             try {
@@ -55,7 +55,7 @@ public class ControladorHilos {
         return character;
     }
 
-    public void setCharacter(char character) {
+    public synchronized void setCharacter(char character) {
 
         while (available){
             try {

@@ -22,7 +22,7 @@ public class HiloProductor extends Thread {
 
     @Override
     public void run() {
-        synchronized ( controladorHilos){
+        //synchronized ( controladorHilos){
 
             try {
                 character = inputStreamReader.read();
@@ -43,5 +43,5 @@ public class HiloProductor extends Thread {
             System.out.println("\nProceso Finalizado");
 
         }
-    }
+   // }
 }

@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 
-public class ServidorChat  {
+public class       ServidorChat  {
 	static final int MAXIMO = 5;//MAXIMO DE CONEXIONES PERMITIDAS	
 	
 	public static void main(String args[]) throws IOException {
