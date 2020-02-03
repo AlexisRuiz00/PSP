@@ -7,10 +7,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class App_Ftp implements ActionListener {
 
@@ -48,6 +45,10 @@ public class App_Ftp implements ActionListener {
                 View view = new View(app);
             }else{
                 //ventana
+                JOptionPane.showMessageDialog(null,
+                        "No se ha podido conectar con el servidor",
+                        "SERVER ERROR",
+                        JOptionPane.WARNING_MESSAGE);
             }
 
 
@@ -66,41 +67,55 @@ public class App_Ftp implements ActionListener {
         switch (actionEvent.getActionCommand()){
 
             case "subir":
-                System.out.println("entras");
 
                 JFileChooser chooser = new JFileChooser();
                 chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 chooser.showOpenDialog(new JFrame("Selcciona un fichero"));
 
+
                 File selectedFile = chooser.getSelectedFile();
                 if (selectedFile == null) {
+                    JOptionPane.showMessageDialog(null,
+                            "No se ha seleccionado ningun fichero",
+                            "Selecciona un Fichero.",
+                            JOptionPane.WARNING_MESSAGE);
                     System.out.println("No file selected!");
                 }
                 else {
                     try {
-                        String directorio = selectedFile.getParent().replaceAll("/","\\");
+                        String directorio = selectedFile.getParent().replaceAll("C:","");
 
-/*                        if (!(app.client.changeWorkingDirectory(directorio))){
+                       if (!(app.client.changeWorkingDirectory(directorio))){
                             System.out.println(directorio);
                             if (client.makeDirectory(directorio)){
                                 client.changeWorkingDirectory(directorio);
 
                             }else {
                                 System.out.println("ERROR AL  CREAR EL DIRECTORIO");
+                                JOptionPane.showMessageDialog(null,
+									    "Error al crear el directorio",
+									    "ERROR.",
+									    JOptionPane.WARNING_MESSAGE);
+
                                 //ventana no se ha podido crear el directorio
                                 System.exit(0);
                             }
-                        }*/
+                        }
 
                         BufferedInputStream in = new BufferedInputStream(new FileInputStream(selectedFile));
-                        if (client.storeFile(selectedFile.getName(),in)){
+                        if (client.storeFile(selectedFile.getName()+" NUEVO",in)){
                             System.out.println("SUBIDO");
+
+                            JOptionPane.showMessageDialog(null,
+                                    "Fichero subido con exito",
+                                    "",
+                                    JOptionPane.WARNING_MESSAGE);
                             //ventana se ha subido
                         }else {
                             System.out.println("ERROR AL SUBIR");
                             //ventana no se ha subido
                         }
-
+                        in.close();
 
                     } catch (IOException e) {e.printStackTrace();}
                 }
@@ -109,7 +124,7 @@ public class App_Ftp implements ActionListener {
 
                 break;
 
-            case "baja":
+            case "bajar":
                 System.out.println("entras");
 
                 chooser = new JFileChooser();
@@ -118,9 +133,40 @@ public class App_Ftp implements ActionListener {
 
                 selectedFile = chooser.getSelectedFile();
                 if (selectedFile == null) {
+                    JOptionPane.showMessageDialog(null,
+                            "No se ha seleccionado ningun fichero",
+                            "Selecciona un Fichero.",
+                            JOptionPane.WARNING_MESSAGE);
+
                     System.out.println("No file selected!");
                 }
                 else {
+                    try {
+                        client.changeWorkingDirectory(selectedFile.getParent().replaceAll("C:",""));
+                        BufferedOutputStream out = new BufferedOutputStream(
+                                new FileOutputStream(selectedFile+" NUEVO"));
+
+                        if (client.retrieveFile(selectedFile.getName(),out)){
+                            JOptionPane.showMessageDialog(null,
+                                    "Fichero descargado con exito",
+                                    "",
+                                    JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null,
+                                    "No se ha podido descargar el fichero",
+                                    "ERROR",
+                                    JOptionPane.WARNING_MESSAGE);
+                        }
+
+                        out.close();
+                    } catch (IOException e) {
+                        JOptionPane.showMessageDialog(null,
+                                "Error al cambiar de directorio",
+                                "ERROR.",
+                                JOptionPane.WARNING_MESSAGE);
+                        e.printStackTrace();
+                    }
+
 
                 }
 
