@@ -1,4 +1,4 @@
-package SERVICIOS;
+package SERVICIOS.FTP;
 
 public class View extends javax.swing.JFrame {
 

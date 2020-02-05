@@ -1,4 +1,4 @@
-package SERVICIOS;
+package SERVICIOS.FTP;
 
 import javax.swing.*;
 

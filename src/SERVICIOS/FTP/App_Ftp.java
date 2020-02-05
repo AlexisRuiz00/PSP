@@ -1,6 +1,5 @@
-package SERVICIOS;
+package SERVICIOS.FTP;
 
-import javafx.stage.FileChooser;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
